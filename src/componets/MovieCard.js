@@ -27,7 +27,7 @@ class MovieCard extends React.Component {
                 className="unfavourite-btn"
                 onClick={this.handleUnFavouriteClick}
               >
-                UnFavourite
+                Unfavourite
               </button>
             ) : (
               <button

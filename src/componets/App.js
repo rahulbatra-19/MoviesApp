@@ -17,15 +17,16 @@ class App extends React.Component {
     console.log("State", this.props.store.getState());
   }
   isMovieFavorite = (movie) => {
-    const { favourites } = this.props.store.getState();
-    const isfavourite = favourites.includes(movie);
+    const { movies } = this.props.store.getState();
+    const isfavourite = movies.favourites.includes(movie);
     return isfavourite;
   };
   onChangeTab = (val) => {
     this.props.store.dispatch(setShowFavourites(val));
   };
   render() {
-    const { list, favourites, showFavourites } = this.props.store.getState(); // {list : [] , favourites :[]}
+    const { movies } = this.props.store.getState();
+    const { list, favourites, showFavourites } = movies; // {list : [] , favourites :[]}
     console.log("Render", this.props.store.getState());
     const displayMovies = showFavourites ? favourites : list;
     return (

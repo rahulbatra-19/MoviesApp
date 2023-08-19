@@ -3,9 +3,9 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./componets/App";
 import { legacy_createStore as createStore } from "redux";
-import movies from "./reducers";
+import rootReducer from "./reducers";
 
-const store = createStore(movies);
+const store = createStore(rootReducer);
 console.log("store", store);
 // console.log("Before  State", store.getState());
 
