@@ -3,18 +3,19 @@ import Navbar from "./Navbar";
 import React from "react";
 import MovieCard from "./MovieCard";
 import { addMovies, addFavourite, setShowFavourites } from "../actions";
+import { StoreContext } from "../index";
 
 class App extends React.Component {
   componentDidMount() {
     const { store } = this.props;
     store.subscribe(() => {
-      console.log("UPDATED");
+      // console.log("UPDATED");
       this.forceUpdate();
     });
     // make api call
     // dispatch action
     store.dispatch(addMovies(data));
-    console.log("State", this.props.store.getState());
+    // console.log("State", this.props.store.getState());
   }
   isMovieFavorite = (movie) => {
     const { movies } = this.props.store.getState();
@@ -27,11 +28,14 @@ class App extends React.Component {
   render() {
     const { movies, search } = this.props.store.getState();
     const { list, favourites, showFavourites } = movies; // {list : [] , favourites :[]}
-    console.log("Render", this.props.store.getState());
+    // console.log("Render", this.props.store.getState());
     const displayMovies = showFavourites ? favourites : list;
+    // return (
+    // <StoreContext.Consumer>
+    // {(store) => {
     return (
       <div className="App">
-        <Navbar dispatch={this.props.store.dispatch} search={search} />
+        <Navbar search={search} />
         <div className="main">
           <div className="tabs">
             <div
@@ -63,7 +67,19 @@ class App extends React.Component {
         </div>
       </div>
     );
+    // }}
+    // </StoreContext.Consumer>
+    // );
   }
 }
 
-export default App;
+class AppWrapper extends React.Component {
+  render() {
+    return (
+      <StoreContext.Consumer>
+        {(store) => <App store={store} />}
+      </StoreContext.Consumer>
+    );
+  }
+}
+export default AppWrapper;
