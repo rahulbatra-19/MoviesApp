@@ -3,7 +3,8 @@ import Navbar from "./Navbar";
 import React from "react";
 import MovieCard from "./MovieCard";
 import { addMovies, addFavourite, setShowFavourites } from "../actions";
-import { StoreContext, connect } from "../index";
+// import { StoreContext, connect } from "../index";
+import { connect } from "react-redux";
 
 class App extends React.Component {
   componentDidMount() {
